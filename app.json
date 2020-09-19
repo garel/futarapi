@@ -1,5 +1,7 @@
 {
   "scripts" : {
-    "postdeploy" : "php artisan migrate:fresh"
+    "postdeploy" : [
+      "php artisan key:generate",
+      "php artisan migrate:fresh",
   }
 }

@@ -20,6 +20,21 @@ Route::get("/",function (){
 Route::get("/list",function (){
     return Ad::all();
 });
+Route::get("/list/{item}",function (Ad $item){
+    return $item;
+});
+Route::post("/list/create",function(Request $request){
+    $ad = new Ad;
+    $ad->description = $request->description;
+    $ad->payment = $request->payment;
+    $ad->name = $request->name;
+    $ad->save();
+
+    return $ad;
+});
+Route::post("/list/remove/",function (Request $request){
+    Ad::destroy($request->id);
+});
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
